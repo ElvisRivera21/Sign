@@ -8,7 +8,7 @@ function App() {
 
   return (
     <>
-      <Authenticate/>
+      < Authenticate/>
       <h1>test</h1>
       <SignUpForm/>
     </>
