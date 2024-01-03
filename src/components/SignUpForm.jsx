@@ -1,19 +1,26 @@
-import React, {useState} from "react"
+import React, { useState } from "react";
 
 function SignUpForm() {
-    //State Variables
+    // State Variables
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState(null);
 
-    //function to handle form submission
-    const handleSubmit = (event) => {
+    // Function to handle form submission/async function
+    const handleSubmit = async (event) => {
         event.preventDefault();
-    }
+        console.log("Hello 👋");
+
+        
+
+        // Clear the form inputs and error state
+        setUsername("");
+        setPassword("");
+        setError(null);
+    };
 
     return (
         <>
-
             <h2>Sign Up</h2>
             <form onSubmit={handleSubmit}>
                 {/* Username input */}
@@ -42,15 +49,8 @@ function SignUpForm() {
                 {/* Submit button */}
                 <button type="submit">Submit</button>
             </form>
-
-
-                
-
-
-
-
         </>
-    )
+    );
 }
 
-export default SignUpForm
+export default SignUpForm;
