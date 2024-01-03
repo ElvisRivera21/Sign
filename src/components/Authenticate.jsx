@@ -1,4 +1,6 @@
-function Authenticate() {
+import React from "react"
+
+function Authenticate({token}) {
 
 
     return (

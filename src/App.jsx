@@ -4,13 +4,21 @@ import SignUpForm from './components/SignUpForm'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  //State Variable
+  const [token, setToken] = useState(null);
+
+  // Function to set the token in the parent component
+  const handleSetToken = (newToken) => {
+    setToken(newToken);
+  };
 
   return (
     <>
-      < Authenticate/>
+      <Authenticate token={token} />
+      
+      
       <h1>test</h1>
-      <SignUpForm/>
+      <SignUpForm setToken={setToken} />
     </>
   )
 }

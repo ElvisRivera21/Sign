@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function SignUpForm() {
+function SignUpForm({setToken}) {
     // State Variables
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -9,42 +9,37 @@ function SignUpForm() {
     // Function to handle form submission/async function
     const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log("Hello 👋");
 
         try {
-            //async api request POST method
             const response = await fetch("https://fsa-jwt-practice.herokuapp.com/signup", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                
                 body: JSON.stringify({
                     username,
                     password,
                 }),
             });
 
-            // Check if the response is successful (status code 2xx)
             if (response.ok) {
-                // Process the successful response, if needed
+                const result = await response.json();
+
+                // Call the setToken function passed as a prop from the parent
+                setToken(result.token);
+
                 console.log("Form submitted successfully");
             } else {
-                // If the response is not successful, throw an error
                 throw new Error(`Server error: ${response.status}`);
             }
         } catch (error) {
-            // Handle errors by setting the error state
             setError(error.message);
         } finally {
-            // Clear the form inputs and error state
             setUsername("");
             setPassword("");
             setError(null);
-            
         }
     };
-
     
 
     return (
