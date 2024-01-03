@@ -14,11 +14,11 @@ function App() {
 
   return (
     <>
-      <Authenticate token={token} />
+      <Authenticate token={token} setToken={setToken} />
       
       
       <h1>test</h1>
-      <SignUpForm setToken={setToken} />
+      <SignUpForm token={token} setToken={setToken} />
     </>
   )
 }
