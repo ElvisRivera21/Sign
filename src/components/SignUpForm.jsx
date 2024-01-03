@@ -11,13 +11,41 @@ function SignUpForm() {
         event.preventDefault();
         console.log("Hello 👋");
 
-        
+        try {
+            //async api request POST method
+            const response = await fetch("https://fsa-jwt-practice.herokuapp.com/signup", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                
+                body: JSON.stringify({
+                    username,
+                    password,
+                }),
+            });
 
-        // Clear the form inputs and error state
-        setUsername("");
-        setPassword("");
-        setError(null);
+            // Check if the response is successful (status code 2xx)
+            if (response.ok) {
+                // Process the successful response, if needed
+                console.log("Form submitted successfully");
+            } else {
+                // If the response is not successful, throw an error
+                throw new Error(`Server error: ${response.status}`);
+            }
+        } catch (error) {
+            // Handle errors by setting the error state
+            setError(error.message);
+        } finally {
+            // Clear the form inputs and error state
+            setUsername("");
+            setPassword("");
+            setError(null);
+            
+        }
     };
+
+    
 
     return (
         <>
@@ -52,5 +80,6 @@ function SignUpForm() {
         </>
     );
 }
+
 
 export default SignUpForm;
